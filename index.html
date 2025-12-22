@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Behavior Data Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: auto; }
+    label { font-weight: bold; display: block; margin-top: 15px; }
+    select, input[type="text"], input[type="date"], input[type="time"] {
+      width: 100%; padding: 8px; font-size: 16px;
+    }
+    button {
+      margin-top: 20px; padding: 12px; width: 100%; font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Behavior Data Entry</h2>
+
+  <form id="form">
+
+    <label>Staff Member</label>
+    <input list="staff-list" name="staff" placeholder="Select or type" required>
+    <datalist id="staff-list">
+      <option value="Staff 1">
+      <option value="Staff 2">
+      <option value="Staff 3">
+    </datalist>
+
+    <label>Student Name</label>
+    <input list="student-list" name="student" placeholder="Select or type" required>
+    <datalist id="student-list">
+      <option value="Student 1">
+      <option value="Student 2">
+      <option value="Student 3">
+    </datalist>
+
+    <label>Date</label>
+    <input type="date" name="date" id="date" required>
+
+    <label>Time Block</label>
+    <input list="block-list" name="timeblock" placeholder="Select or type" required>
+    <datalist id="block-list">
+      <option value="Block 1">
+      <option value="Block 2">
+      <option value="Block 3">
+    </datalist>
+
+    <label>Time</label>
+    <input type="time" name="time" id="time" required>
+
+    <label>Behavior #1</label>
+    <select name="beh1">
+      <option value="0">0</option><option value="1">1</option>
+      <option value="2">2</option><option value="3">3</option>
+      <option value="4">4</option><option value="5">5</option>
+    </select>
+
+    <label>Behavior #2</label>
+    <select name="beh2">
+      <option value="0">0</option><option value="1">1</option>
+      <option value="2">2</option><option value="3">3</option>
+      <option value="4">4</option><option value="5">5</option>
+    </select>
+
+    <label>Behavior #3</label>
+    <select name="beh3">
+      <option value="0">0</option><option value="1">1</option>
+      <option value="2">2</option><option value="3">3</option>
+      <option value="4">4</option><option value="5">5</option>
+    </select>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    // Autofill date + time
+    const now = new Date();
+    document.getElementById("date").value = now.toISOString().substr(0,10);
+    document.getElementById("time").value = now.toTimeString().substr(0,5);
+
+    // Submit handler
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = {
+        staff: e.target.staff.value,
+        student: e.target.student.value,
+        date: e.target.date.value,
+        timeblock: e.target.timeblock.value,
+        time: e.target.time.value,
+        beh1: e.target.beh1.value,
+        beh2: e.target.beh2.value,
+        beh3: e.target.beh3.value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbwhtgPmVsujDtwD5fn7JiAGd6HEhdT07rzmvOMebjpcJ-YaSUAU6-YWjUx14DDaM1JB3A/exec", {
+        method: "POST",
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        document.getElementById("message").innerText = "Saved!";
+        e.target.reset();
+      });
+    });
+  </script>
+</body>
+</html>
