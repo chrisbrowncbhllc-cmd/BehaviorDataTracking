@@ -154,10 +154,27 @@
         body: JSON.stringify(formData)
       })
       .then(() => {
-        document.getElementById("message").innerText = "Saved!";
-        e.target.reset();
-      });
+  document.getElementById("message").innerText = "Saved!";
+
+  // Vibration (mobile devices only)
+  if (navigator.vibrate) {
+    navigator.vibrate(100);
+  }
+
+  // Sound confirmation
+  const sound = document.getElementById("confirmSound");
+  if (sound) {
+    sound.play();
+  }
+
+  e.target.reset();
+});
+
     });
   </script>
+<audio id="confirmSound">
+  <source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg" type="audio/ogg">
+</audio>
+
 </body>
 </html>
