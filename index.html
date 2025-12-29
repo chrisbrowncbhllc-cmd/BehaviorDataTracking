@@ -3,15 +3,68 @@
 <head>
   <title>Behavior Data Form</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 500px; margin: auto; }
-    label { font-weight: bold; display: block; margin-top: 15px; }
-    select, input[type="text"], input[type="date"], input[type="time"] {
-      width: 100%; padding: 8px; font-size: 20px;
-    }
-    button {
-      margin-top: 20px; padding: 12px; width: 100%; font-size: 18px;
-    }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f2ff; /* light blue */
+    margin: 0;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 480px;
+    margin: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-top: 18px;
+    font-size: 18px;
+  }
+
+  select,
+  input[type="text"],
+  input[type="date"],
+  input[type="time"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    margin-top: 6px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    margin-top: 25px;
+    padding: 16px;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #3399ff;
+    color: white;
+  }
+
+  button:active {
+    background-color: #267acc;
+  }
+
+  #message {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+</style>
+
 </head>
 
 <body>
